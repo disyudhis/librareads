@@ -1,4 +1,4 @@
-Step
+## Step
 1. Clone Repo
 2. composer install
 3. npm install
