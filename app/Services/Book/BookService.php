@@ -20,7 +20,11 @@ class BookService extends AppService implements AppServiceInterface
 
     public function getById($id)
     {
-        return BookTable::findOrFail($id);
+        return BookTable::find($id);
+    }
+
+    public function searchBookByTitle($search)  {
+        return BookTable::where('title', 'LIKE', '%' . $search . '%')->paginate(12);
     }
 
     public function getAll()
@@ -39,14 +43,14 @@ class BookService extends AppService implements AppServiceInterface
 
     public function update($id, $data)
     {
-        $row = BookTable::findOrFail($id);
+        $row = BookTable::find($id);
         $row->update($data);
         return $row;
     }
 
     public function delete($id)
     {
-        $row = BookTable::findOrFail($id);
+        $row = BookTable::find($id);
         $row->delete();
         return $row;
     }

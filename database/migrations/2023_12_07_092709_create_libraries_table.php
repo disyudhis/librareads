@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('members', function (Blueprint $table) {
+        Schema::create('libraries', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name')->nullable();
-            // $table->foreignUuid('user_id')->nullable()->references('id')->on('users');
+            $table->foreignId('user_id')->nullable()->references('id')->on('users');
+            $table->foreignUuid('transaction_id')->nullable()->references('id')->on('transactions');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('members');
+        Schema::dropIfExists('libraries');
     }
 };

@@ -3,10 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
+use App\Models\Table\LibraryTable;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -14,6 +16,7 @@ class User extends Authenticatable
 
     const ROLE_ADMIN = 'ADMIN';
     const ROLE_MEMBER = 'MEMBER';
+    const ROLE_SUPERADMIN = 'SUPERADMIN';
 
     /**
      * The attributes that are mass assignable.
@@ -38,4 +41,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function libraries()
+    {
+        $this->hasMany(LibraryTable::class, 'user_id');
+    }
+
+    public function getPhotoUrlAttribute()
+    {
+        if (!blank($this->photo)) {
+            return Storage::temporaryUrl($this->photo, new \DateTime('+1 days'));
+        }
+        return null;
+    }
 }

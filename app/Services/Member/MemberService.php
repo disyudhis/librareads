@@ -21,12 +21,16 @@ class MemberService extends AppService implements AppServiceInterface
 
     public function getById($id)
     {
-        return MemberTable::findOrFail($id);
+        return User::find($id);
     }
 
     public function getMemberOnly()
     {
         return User::where('role', User::ROLE_MEMBER)->get();
+    }
+
+    public function getStaffOnly() {
+        return User::where('role', User::ROLE_ADMIN)->get();
     }
 
     public function create($data)
@@ -36,16 +40,14 @@ class MemberService extends AppService implements AppServiceInterface
 
     public function update($id, $data)
     {
-        $row = MemberTable::findOrFail($id);
-        $row->update([
-            'name' => $data['name'],
-        ]);
+        $row = User::find($id);
+        $row->update($data);
         return $row;
     }
 
     public function delete($id)
     {
-        $row = MemberTable::findOrFail($id);
+        $row = User::find($id);
         $row->delete();
         return $row;
     }

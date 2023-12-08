@@ -3,12 +3,13 @@
 namespace App\Models\Entity;
 
 use App\Models\AppModel;
+use App\Traits\Search;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Book extends AppModel
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Search;
 
     /**
      * The table associated with the model.

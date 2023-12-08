@@ -46,10 +46,10 @@ class DatatableServiceProvider extends ServiceProvider
                             $dir = Str::camel($dir);
                             $col = Str::afterLast($searchColumn, '.');
                             $query = $query->orWhereHas($dir, function ($query) use ($col, $searchKey) {
-                                $query->where($col, 'ILIKE', "%$searchKey%");
+                                $query->where($col, 'LIKE', "%$searchKey%");
                             });
                         } else {
-                            $query = $query->orWhere($searchColumn, 'ILIKE', "%$searchKey%");
+                            $query = $query->orWhere($searchColumn, 'LIKE', "%$searchKey%");
                         }
                     }
                 });

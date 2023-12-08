@@ -35,13 +35,16 @@ class RegisterController extends Controller
     {
         $role = Auth::user()->role;
         switch ($role) {
-            case 'ADMIN': 
+            case 'ADMIN':
                 return route('admin.dashboard.index');
                 break;
-            case 'MEMBER': 
+            case 'MEMBER':
                 return route('member.dashboard.index');
                 break;
-            default: 
+            case 'SUPERADMIN':
+                return route('super.dashboard.index');
+                break;
+            default:
                 return Session::get('previous', url('/'));
                 break;
         }

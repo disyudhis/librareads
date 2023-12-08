@@ -29,13 +29,16 @@ class LoginController extends Controller
      * @var string
      */
     public function redirectTo() {
-        $role = Auth::user()->role; 
+        $role = Auth::user()->role;
         switch ($role) {
             case 'ADMIN':
                 return route('admin.dashboard.index');
                 break;
             case 'MEMBER':
                 return route('member.dashboard.index');
+                break;
+            case 'SUPERADMIN':
+                return route('super.dashboard.index');
                 break;
             default:
                 return Session::get('previous', url('/'));

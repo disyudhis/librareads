@@ -9,7 +9,13 @@ use App\Http\Livewire\Pages\Admin\Books\AdminBooksManage;
 use App\Http\Livewire\Pages\Admin\Dashboard\AdminDashboardIndex;
 use App\Http\Livewire\Pages\Admin\Members\AdminMembersIndex;
 use App\Http\Livewire\Pages\Admin\Members\AdminMembersManage;
+use App\Http\Livewire\Pages\Member\Dashboard\MemberDashboardDetail;
 use App\Http\Livewire\Pages\Member\Dashboard\MemberDashboardIndex;
+use App\Http\Livewire\Pages\Member\Library\MemberLibraryIndex;
+use App\Http\Livewire\Pages\Superadmin\Dashboard\SuperDashboardCreate;
+use App\Http\Livewire\Pages\Superadmin\Dashboard\SuperDashboardDetail;
+use App\Http\Livewire\Pages\Superadmin\Dashboard\SuperDashboardIndex;
+use App\Http\Livewire\Pages\Superadmin\Dashboard\SuperDashboardManage;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,14 +49,24 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'admin'], function () {
-        Route::get('/admin/dashboard', AdminDashboardIndex::class)->name('admin.dashboard.index');
-        Route::get('/admin/books/create', AdminBooksManage::class)->name('admin.books.create');
-        Route::get('/admin/books', AdminBooksIndex::class)->name('admin.books.index');
-        Route::get('/admin/members', AdminMembersIndex::class)->name('admin.members.index');
-        Route::get('/admin/members/create', AdminMembersManage::class)->name('admin.members.create');
+        Route::get('/staff/dashboard', AdminDashboardIndex::class)->name('admin.dashboard.index');
+        Route::get('/staff/books/create', AdminBooksManage::class)->name('admin.books.create');
+        Route::get('/staff/books', AdminBooksIndex::class)->name('admin.books.index');
+        Route::get('/staff/books/{id}/edit',AdminBooksManage::class)->name('admin.books.edit');
+        Route::get('/staff/members', AdminMembersIndex::class)->name('admin.members.index');
+        Route::get('/staff/members/create', AdminMembersManage::class)->name('admin.members.create');
+        Route::get('/staff/members/{id}/edit', AdminMembersManage::class)->name('admin.members.edit');
     });
 
     Route::group(['middleware' => 'member'], function () {
         Route::get('/member/dashboard', MemberDashboardIndex::class)->name('member.dashboard.index');
+        Route::get('/member/dashboard/{id}', MemberDashboardDetail::class)->name('member.dashboard.detail');
+        Route::get('/member/library', MemberLibraryIndex::class)->name('member.library.index');
+    });
+
+    Route::group(['middleware' => 'superadmin'], function() {
+        Route::get('/admin/dashboard', SuperDashboardIndex::class)->name('super.dashboard.index');
+        Route::get('/admin/dashboard/create', SuperDashboardManage::class)->name('super.dashboard.create');
+        Route::get('/admin/dashboard/{id}', SuperDashboardManage::class)->name('super.dashboard.edit');
     });
 });

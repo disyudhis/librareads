@@ -22,13 +22,16 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                $role = Auth::user()->role; 
+                $role = Auth::user()->role;
                 switch ($role) {
                     case 'ADMIN':
                         return redirect(route('admin.dashboard.index'));
                         break;
                     case 'MEMBER':
                         return redirect(route('member.dashboard.index'));
+                        break;
+                    case 'SUPERADMIN':
+                        return redirect(route('super.dashboard.index'));
                         break;
                     default:
                         return Session::get('previous', url('/'));

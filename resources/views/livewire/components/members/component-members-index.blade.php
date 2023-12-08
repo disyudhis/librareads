@@ -3,15 +3,19 @@
         <div class="card-header">
             <div class="card-title"></div>
             <div class="card-toolbar">
-                <a href="{{ route('admin.members.create') }}" type="button"
-                    class="btn btn-pink btn-lg font-size-h6 font-weight-bold"><i class="flaticon2-plus text-white"></i>Add
-                    Member</a>
+                <a href="{{ auth()->user()->role == \App\Models\User::ROLE_ADMIN ? route('admin.members.create') : route('super.dashboard.create') }}"
+                    type="button" class="btn btn-pink btn-lg font-size-h6 font-weight-bold"><i
+                        class="flaticon2-plus text-white"></i>Add
+                    {{ auth()->user()->role == \App\Models\User::ROLE_ADMIN ? 'Member' : 'Staff' }}
+                </a>
             </div>
         </div>
         <div class="card-body">
             <div class="row">
                 @forelse ($members as $member)
-                    <div class="card gutter-b col-md-4 p-5 gap-3">
+                    <a href="{{ auth()->user()->role == \App\Models\User::ROLE_SUPERADMIN ? route('super.dashboard.edit', ['id' => $member->id]) : route('admin.members.edit', ['id' => $member->id]) }}"
+                        class="card card-custom bg-hover-state-secondary card-stretch gutter-b col-md-4 p-5 gap-3"
+                        style="color:inherit; text-decoration:none;">
                         <div class="row d-flex align-items-center justify-content-center">
                             <div class="col-3">
                                 <img src="{{ $member->photo ? asset('storage/' . $member->photo) : asset('assets/media/users/blank.png') }}"
@@ -31,7 +35,7 @@
                                 </span>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 @empty
                     <div class="col">
                         <p class="text-center">No Member Available</p>

@@ -56210,6 +56210,25 @@ button {
   border-color: pink;
 }
 
+.btn.btn-pink:hover {
+    color: #ffffff;
+    background-color: var(--pink);
+    border-color: pink;
+  }
+
+.btn.btn-outline-pink {
+  color: var(--pink);
+  background-color: transparent;
+  border-color: var(--pink);
+}
+
+.btn.btn-outline-pink:hover {
+    color: #ffffff;
+    background-color: var(--pink);
+    border-color: var(--pink);
+}
+
+
 .btn i {
   font-size: 1.3rem;
   padding-right: 0.35rem;

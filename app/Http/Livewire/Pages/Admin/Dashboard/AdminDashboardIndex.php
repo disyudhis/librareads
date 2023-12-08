@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class AdminDashboardIndex extends Component
 {
-    public $page_title  = 'Dashboard | Admin LibraReads';
+    public $page_title  = 'Dashboard | Staff LibraReads';
     public $page_name   = 'Dashboard';
     public function render()
     {

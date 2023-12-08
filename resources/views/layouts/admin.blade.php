@@ -67,6 +67,9 @@ License: You must have a valid license purchased only from themeforest(the above
                 <span></span>
             </button>
             <!--end::Aside Mobile Toggle-->
+            <button class="btn p-0 burger-icon ml-4" id="kt_header_mobile_toggle">
+				<span></span>
+			</button>
             <!--begin::Topbar Mobile Toggle-->
             <button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle">
                 <span class="svg-icon svg-icon-xl">
@@ -111,12 +114,20 @@ License: You must have a valid license purchased only from themeforest(the above
                 @include('layouts.admin.sidebar')
             @elseif(auth()->user()->role == 'MEMBER')
                 @include('layouts.member.sidebar')
+            @elseif(auth()->user()->role == 'SUPERADMIN')
+                @include('layouts.super.sidebar')
             @endif
             <!--end::Aside-->
             <!--begin::Wrapper-->
             <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
                 <!--begin::Header-->
-                @include('layouts.admin.header')
+                @if (auth()->user()->role == 'ADMIN')
+                    @include('layouts.admin.header')
+                @elseif (auth()->user()->role == 'MEMBER')
+                    @include('layouts.member.header')
+                @elseif(auth()->user()->role == 'SUPERADMIN')
+                    @include('layouts.super.header')
+                @endif
                 <!--end::Header-->
                 <!--begin::Content-->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">

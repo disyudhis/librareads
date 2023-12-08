@@ -3,7 +3,7 @@
     <div class="brand flex-column-auto" id="kt_brand">
         <!--begin::Logo-->
         <span class="brand-logo mt-6">
-            <img src="{{ asset('assets/images/logo-main.png') }}" class="max-h-50px" alt="" />
+            <img src="{{ asset('assets/images/logo-sidebar.png') }}" class="max-h-40px" alt="" />
         </span>
         <!--end::Logo-->
         <!--begin::Toggle-->
@@ -36,12 +36,88 @@
         <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1"
             data-menu-dropdown-timeout="500">
             <ul class="menu-nav">
-                <li class="menu-item {{ Route::currentRouteNamed('admin.dashboard.*') ? 'menu-item-active' : '' }}"
-                    aria-haspopup="true">
-                    <a href="{{ route('admin.dashboard.index') }}" class="menu-link">
-                        <i class="menu-icon flaticon2-poll-symbol"></i>
-                        <span class="menu-text">Dashboard</span>
-                    </a>
+                <li class="menu-section">
+                    <h4 class="menu-text font-weight-boldest">GENRE</h4>
+                    <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+                </li>
+                <li class="menu-item menu-item-submenu menu-item-open" aria-haspopup="true" data-menu-toggle="hover">
+                    <p class="menu-link">
+                        <span class="menu-text font-weight-boldest">Fiction</span>
+                    </p>
+                    <div class="menu-submenu">
+                        <ul class="menu-subnav">
+                            <li class="menu-item menu-item-parent" aria-haspopup="true">
+                                <span class="menu-link">
+                                    <span class="menu-text">Fiction</span>
+                                </span>
+                            </li>
+                            <li class="menu-item menu-item-active" aria-haspopup="true">
+                                <p class="menu-link">
+                                    <span class="menu-text">Science Fiction</span>
+                                </p>
+                            </li>
+                            <li class="menu-item menu-item-active" aria-haspopup="true">
+                                <p class="menu-link">
+                                    <span class="menu-text">Horror Fiction</span>
+                                </p>
+                            </li>
+                            <li class="menu-item menu-item-active" aria-haspopup="true">
+                                <p class="menu-link">
+                                    <span class="menu-text">Romance Fiction</span>
+                                </p>
+                            </li>
+                            <li class="menu-item menu-item-active" aria-haspopup="true">
+                                <p class="menu-link">
+                                    <span class="menu-text">Action Fiction</span>
+                                </p>
+                            </li>
+                            <li class="menu-item menu-item-active" aria-haspopup="true">
+                                <p class="menu-link">
+                                    <span class="menu-text">Fantasy Fiction</span>
+                                </p>
+                            </li>
+                            <li class="menu-item menu-item-active" aria-haspopup="true">
+                                <p class="menu-link">
+                                    <span class="menu-text">Crime Fiction</span>
+                                </p>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-item menu-item-submenu menu-item-open" aria-haspopup="true" data-menu-toggle="hover">
+                    <p class="menu-link">
+                        <span class="menu-text font-weight-boldest">Non Fiction</span>
+                    </p>
+                    <div class="menu-submenu">
+                        <ul class="menu-subnav">
+                            <li class="menu-item menu-item-parent" aria-haspopup="true">
+                                <span class="menu-link">
+                                    <span class="menu-text">Non Fiction</span>
+                                </span>
+                            </li>
+                            <li class="menu-item menu-item-active" aria-haspopup="true">
+                                <p class="menu-link">
+                                    <span class="menu-text">History</span>
+                                </p>
+                            </li>
+                            <li class="menu-item menu-item-active" aria-haspopup="true">
+                                <p class="menu-link">
+                                    <span class="menu-text">Biography</span>
+                                </p>
+                            </li>
+                            <li class="menu-item menu-item-active" aria-haspopup="true">
+                                <p class="menu-link">
+                                    <span class="menu-text">Autobiography</span>
+                                </p>
+                            </li>
+                            <li class="menu-item menu-item-active" aria-haspopup="true">
+                                <p class="menu-link">
+                                    <span class="menu-text">Cookbook</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
         </div>

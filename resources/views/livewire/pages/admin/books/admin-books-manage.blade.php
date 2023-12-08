@@ -14,5 +14,5 @@
             </li>
         </ul>
     @endsection
-    @livewire('components.books.component-books-form')
+@livewire('components.books.component-books-form', ['book_id' => $book_id])
 </div>
