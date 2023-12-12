@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('libraries', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('title')->nullable();
-            $table->string('writer')->nullable();
-            $table->string('isbn')->nullable();
-            $table->string('synopsis')->nullable();
-            $table->string('category')->nullable();
-            $table->string('image')->nullable();
-            $table->integer('quantity')->nullable();
+            $table->foreignUuid('loan_id')->nullable()->references('id')->on('loans');
+            $table->string('status')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -34,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('libraries');
     }
 };

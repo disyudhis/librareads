@@ -34,7 +34,7 @@
                         </div>
                     @empty
                         <div class="col text-center justify-content-center align-items-center d-flex">
-                            <p class="display-4">No Book Available</p>
+                            <p class="display-5">Unfortunately, the book you were looking for was not found.</p>
                         </div>
                     @endforelse
                 </div>

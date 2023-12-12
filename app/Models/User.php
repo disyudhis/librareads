@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Table\LoanTable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Table\LibraryTable;
 use Illuminate\Support\Facades\Storage;
@@ -47,6 +48,10 @@ class User extends Authenticatable
         $this->hasMany(LibraryTable::class, 'user_id');
     }
 
+    public function loans()
+    {
+        $this->hasMany(LoanTable::class, 'user_id');
+    }
     public function getPhotoUrlAttribute()
     {
         if (!blank($this->photo)) {

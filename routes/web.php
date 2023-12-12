@@ -9,6 +9,7 @@ use App\Http\Livewire\Pages\Admin\Books\AdminBooksManage;
 use App\Http\Livewire\Pages\Admin\Dashboard\AdminDashboardIndex;
 use App\Http\Livewire\Pages\Admin\Members\AdminMembersIndex;
 use App\Http\Livewire\Pages\Admin\Members\AdminMembersManage;
+use App\Http\Livewire\Pages\Admin\Statistics\AdminStatisticIndex;
 use App\Http\Livewire\Pages\Member\Dashboard\MemberDashboardDetail;
 use App\Http\Livewire\Pages\Member\Dashboard\MemberDashboardIndex;
 use App\Http\Livewire\Pages\Member\Library\MemberLibraryIndex;
@@ -56,6 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/staff/members', AdminMembersIndex::class)->name('admin.members.index');
         Route::get('/staff/members/create', AdminMembersManage::class)->name('admin.members.create');
         Route::get('/staff/members/{id}/edit', AdminMembersManage::class)->name('admin.members.edit');
+        Route::get('/staff/statistic', AdminStatisticIndex::class)->name('admin.statistic.index');
     });
 
     Route::group(['middleware' => 'member'], function () {

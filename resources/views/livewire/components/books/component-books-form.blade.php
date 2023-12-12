@@ -33,16 +33,6 @@
                     <div class="form-group">
                         <div class="input-icon">
                             <input class="form-control form-control-lg rounded-lg font-size-h6" type="text"
-                                placeholder="Code" wire:model="code" name="code" autocomplete="off">
-                            <span><i class="flaticon-exclamation-1 icon-md"></i></span>
-                        </div>
-                        @error('code')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <div class="input-icon">
-                            <input class="form-control form-control-lg rounded-lg font-size-h6" type="text"
                                 placeholder="Title" wire:model="title" name="title" autocomplete="off">
                             <span><i class="flaticon-book icon-md"></i></span>
                         </div>
@@ -67,6 +57,28 @@
                             <span><i class="flaticon2-open-text-book icon-md"></i></span>
                         </div>
                         @error('isbn')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <select class="form-control form-control-lg" name="category" wire:model='category'
+                                id="" placeholder="Pilih kategori">
+                                <option value="" selected>Pilih Kategori</option>
+                                <option value="Science Fiction">Science Fiction</option>
+                                <option value="Horror Fiction">Horror Fiction</option>
+                                <option value="Romance Fiction">Romance Fiction</option>
+                                <option value="Action Fiction">Action Fiction</option>
+                                <option value="Fantasy Fiction">Fantasy Fiction</option>
+                                <option value="Crime Fiction">Crime Fiction</option>
+                                <option value="History">History</option>
+                                <option value="Biography">Biography</option>
+                                <option value="Autobiography">Autobiography</option>
+                                <option value="Cookbook">Cookbook</option>
+                            </select>
+                            <span><i class="flaticon-notes"></i></span>
+                        </div>
+                        @error('category')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>

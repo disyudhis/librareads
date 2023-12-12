@@ -3,8 +3,10 @@
 namespace App\Http\Livewire\Components\Books;
 
 use Livewire\Component;
+use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use App\Services\Book\BookService;
+use App\Services\Stock\StockService;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class ComponentBooksForm extends Component
@@ -12,19 +14,19 @@ class ComponentBooksForm extends Component
     use WithFileUploads;
     use LivewireAlert;
 
-    public $image, $title, $writer, $isbn, $stock, $synopsis, $code;
+    public $image, $category, $title, $writer, $isbn, $stock, $synopsis, $code;
 
     public $book_id;
     protected function rules()
     {
         $rules = [
-            'code' => 'required',
-            'title' => 'required|string',
-            'writer' => 'required|string',
-            'isbn' => 'required|string',
-            'stock' => 'required|string',
+            'category' => 'required',
+            'title'    => 'required|string|unique:books,title',
+            'writer'   => 'required|string',
+            'isbn'     => 'required|string',
+            'stock'    => 'required|string',
             'synopsis' => 'required|max:155',
-            'image' => 'required|image|max:2048|mimes:jpg,png,jpeg',
+            'image'    => 'required|image|max:2048|mimes:jpg,png,jpeg',
         ];
         return $rules;
     }
@@ -32,13 +34,13 @@ class ComponentBooksForm extends Component
     {
         $this->book_id = $book_id;
         if ($this->book_id) {
-            $this->book = $book_service->getById($this->book_id);
-            $this->code = $this->book->code;
-            $this->image = $this->book->image;
-            $this->title = $this->book->title;
-            $this->writer = $this->book->writer;
-            $this->isbn = $this->book->isbn;
-            $this->stock = $this->book->stock;
+            $this->book     = $book_service->getById($this->book_id);
+            $this->code     = $this->book->code;
+            $this->image    = $this->book->image;
+            $this->title    = $this->book->title;
+            $this->writer   = $this->book->writer;
+            $this->isbn     = $this->book->isbn;
+            $this->stock    = $this->book->quantity;
             $this->synopsis = $this->book->synopsis;
         }
     }
@@ -48,22 +50,24 @@ class ComponentBooksForm extends Component
         return view('livewire.components.books.component-books-form');
     }
 
-    public function store(BookService $book_service)
+    public function store(BookService $book_service, StockService $stock_service)
     {
         $this->validate();
         if ($this->image) {
             $image = $this->image->store('images', 'public');
         }
         $data = [
-            'code' => $this->code,
-            'image' => $image,
-            'title' => $this->title,
-            'writer' => $this->writer,
-            'isbn' => $this->isbn,
-            'stock' => $this->stock,
+            'image'    => $image,
+            'title'    => $this->title,
+            'writer'   => $this->writer,
+            'isbn'     => $this->isbn,
+            'category' => $this->category,
+            'quantity' => $this->stock,
             'synopsis' => $this->synopsis,
         ];
-        $book_service->create($data);
+        $book    = $book_service->create($data);
+        $book_id = $book->id;
+        $stock_service->generateCodeForStock($book_id, $this->stock);
         $this->flash('success', 'Book successfully added!', [], route('admin.books.index'));
     }
 
@@ -72,7 +76,7 @@ class ComponentBooksForm extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function update(BookService $book_service)
+    public function update(BookService $book_service, StockService $stock_service)
     {
         $rules = $this->rules();
         if ($this->image) {
@@ -80,24 +84,29 @@ class ComponentBooksForm extends Component
         }
         $this->validate($rules);
         $data = [
-            'code' => $this->code,
-            'title' => $this->title,
-            'writer' => $this->writer,
-            'isbn' => $this->isbn,
-            'stock' => $this->stock,
+            'category' => $this->category,
+            'title'    => $this->title,
+            'writer'   => $this->writer,
+            'isbn'     => $this->isbn,
+            'stock'    => $this->stock,
             'synopsis' => $this->synopsis,
         ];
         if (!is_string($this->image) && $this->image != null) {
-            $image = $this->image->store('images', 'public');
+            $image         = $this->image->store('images', 'public');
             $data['image'] = $image;
         }
         $book_service->update($this->book_id, $data);
+
+        if($this->stock != $this->book->stock){
+            $stock_service->generateCodeForStock($this->book_id, $this->stock);
+        }
         $this->flash('success', 'Book have been updated', [], route('admin.books.index'));
     }
 
-    public function destroy(BookService $book_service)
+    public function destroy(BookService $book_service, StockService $stock_service)
     {
         $book_service->delete($this->book_id);
+        $stock_service->deleteStockByBookId($this->book_id);
         $this->flash('success', 'Book have been deleted', [], route('admin.books.index'));
     }
 

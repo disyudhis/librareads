@@ -28,8 +28,8 @@
                             <i class="menu-arrow"></i>
                         </a>
                     </li>
-                    <li class="menu-item menu-item-submenu">
-                        <a href="javascript:;" class="menu-link">
+                    <li class="menu-item menu-item-submenu {{ Route::currentRouteNamed('admin.statistic.*') ? 'menu-item-active' : '' }}">
+                        <a href="{{ route('admin.statistic.index') }}" class="menu-link">
                             <span class="menu-text">Statistic</span>
                             <i class="menu-arrow"></i>
                         </a>
@@ -46,9 +46,9 @@
             <div class="dropdown">
                 <!--begin::Toggle-->
                 <div class="topbar-item">
-                    @if (Auth::user()->role == 'MEMBER')
+                    {{-- @if (Auth::user()->role == 'MEMBER')
                         @livewire('components.layout.component-search-bar')
-                    @endif
+                    @endif --}}
                 </div>
                 <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
                     <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1 pulse pulse-primary">

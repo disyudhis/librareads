@@ -3,20 +3,19 @@
 namespace App\Models\Entity;
 
 use App\Models\AppModel;
-use App\Traits\Search;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Book extends AppModel
+class Returning extends AppModel
 {
-    use HasFactory, SoftDeletes, Search;
+    use HasFactory, SoftDeletes;
 
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'books';
+    protected $table = 'returnings';
 
     /**
      * The attributes that are mass assignable.
@@ -24,13 +23,7 @@ class Book extends AppModel
      * @var array<int, string>
      */
     protected $fillable = [
-        'title',
-        'image',
-        'writer',
-        'isbn',
-        'quantity',
-        'synopsis',
-        'category'
+        'name',
     ];
 
     /**
