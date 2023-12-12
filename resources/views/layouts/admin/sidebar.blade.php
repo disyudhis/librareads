@@ -52,44 +52,44 @@
                                     <span class="menu-text">Fiction</span>
                                 </span>
                             </li>
-                            <li class="menu-item {{ Route::currentRouteNamed('admin.dashboard.category') && Route::current()->parameter('category') == 'Science Fiction' ? 'menu-item-active' : '' }}"
+                            <li class="menu-item {{ Route::currentRouteNamed('admin.dashboard.category') && Route::current()->parameter('category') == 'Science+Fiction' ? 'menu-item-active' : '' }}"
                                 aria-haspopup="true">
-                                <a href="{{ route('admin.dashboard.category', ['category' => 'Science Fiction']) }}"
+                                <a href="{{ route('admin.dashboard.category', ['category' => urlencode('Science Fiction')]) }}"
                                     class="menu-link">
                                     <span class="menu-text">Science Fiction</span>
                                 </a>
                             </li>
-                            <li class="menu-item {{ Route::currentRouteNamed('admin.dashboard.category') && Route::current()->parameter('category') == 'Horror Fiction' ? 'menu-item-active' : '' }}"
+                            <li class="menu-item {{ Route::currentRouteNamed('admin.dashboard.category') && Route::current()->parameter('category') == 'Horror+Fiction' ? 'menu-item-active' : '' }}"
                                 aria-haspopup="true">
-                                <a href="{{ route('admin.dashboard.category', ['category' => 'Horror Fiction']) }}"
+                                <a href="{{ route('admin.dashboard.category', ['category' => urlencode('Horror Fiction')]) }}"
                                     class="menu-link">
                                     <span class="menu-text">Horror Fiction</span>
                                 </a>
                             </li>
-                            <li class="menu-item {{ Route::currentRouteNamed('admin.dashboard.category') && Route::current()->parameter('category') == 'Romance Fiction' ? 'menu-item-active' : '' }}"
+                            <li class="menu-item {{ Route::currentRouteNamed('admin.dashboard.category') && Route::current()->parameter('category') == 'Romance+Fiction' ? 'menu-item-active' : '' }}"
                                 aria-haspopup="true">
-                                <a href="{{ route('admin.dashboard.category', ['category' => 'Romance Fiction']) }}"
+                                <a href="{{ route('admin.dashboard.category', ['category' => urlencode('Romance Fiction')]) }}"
                                     class="menu-link">
                                     <span class="menu-text">Romance Fiction</span>
                                 </a>
                             </li>
-                            <li class="menu-item {{ Route::currentRouteNamed('admin.dashboard.category') && Route::current()->parameter('category') == 'Action Fiction' ? 'menu-item-active' : '' }}"
+                            <li class="menu-item {{ Route::currentRouteNamed('admin.dashboard.category') && Route::current()->parameter('category') == 'Action+Fiction' ? 'menu-item-active' : '' }}"
                                 aria-haspopup="true">
-                                <a href="{{ route('admin.dashboard.category', ['category' => 'Action Fiction']) }}"
+                                <a href="{{ route('admin.dashboard.category', ['category' => urlencode('Action Fiction')]) }}"
                                     class="menu-link">
                                     <span class="menu-text">Action Fiction</span>
                                 </a>
                             </li>
-                            <li class="menu-item {{ Route::currentRouteNamed('admin.dashboard.category') && Route::current()->parameter('category') == 'Fantasy Fiction' ? 'menu-item-active' : '' }}"
+                            <li class="menu-item {{ Route::currentRouteNamed('admin.dashboard.category') && Route::current()->parameter('category') == 'Fantasy+Fiction' ? 'menu-item-active' : '' }}"
                                 aria-haspopup="true">
-                                <a href="{{ route('admin.dashboard.category', ['category' => 'Fantasy Fiction']) }}"
+                                <a href="{{ route('admin.dashboard.category', ['category' => urlencode('Fantasy Fiction')]) }}"
                                     class="menu-link">
                                     <span class="menu-text">Fantasy Fiction</span>
                                 </a>
                             </li>
-                            <li class="menu-item {{ Route::currentRouteNamed('admin.dashboard.category') && Route::current()->parameter('category') == 'Crime Fiction' ? 'menu-item-active' : '' }}"
+                            <li class="menu-item {{ Route::currentRouteNamed('admin.dashboard.category') && Route::current()->parameter('category') == 'Crime+Fiction' ? 'menu-item-active' : '' }}"
                                 aria-haspopup="true">
-                                <a href="{{ route('admin.dashboard.category', ['category' => 'Crime Fiction']) }}"
+                                <a href="{{ route('admin.dashboard.category', ['category' => urlencode('Crime Fiction')]) }}"
                                     class="menu-link">
                                     <span class="menu-text">Crime Fiction</span>
                                 </a>
