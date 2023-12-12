@@ -45,41 +45,54 @@
                         <span class="menu-text font-weight-boldest">Fiction</span>
                     </p>
                     <div class="menu-submenu">
+                        <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-parent" aria-haspopup="true">
                                 <span class="menu-link">
                                     <span class="menu-text">Fiction</span>
                                 </span>
                             </li>
-                            <li class="menu-item menu-item-active" aria-haspopup="true">
-                                <p class="menu-link">
+                            <li class="menu-item {{ Route::currentRouteNamed('member.dashboard.category') && Route::current()->parameter('category') == 'Science+Fiction' ? 'menu-item-active' : '' }}"
+                                aria-haspopup="true">
+                                <a href="{{ route('member.dashboard.category', ['category' => urlencode('Science Fiction')]) }}"
+                                    class="menu-link">
                                     <span class="menu-text">Science Fiction</span>
-                                </p>
+                                </a>
                             </li>
-                            <li class="menu-item menu-item-active" aria-haspopup="true">
-                                <p class="menu-link">
+                            <li class="menu-item {{ Route::currentRouteNamed('member.dashboard.category') && Route::current()->parameter('category') == 'Horror+Fiction' ? 'menu-item-active' : '' }}"
+                                aria-haspopup="true">
+                                <a href="{{ route('member.dashboard.category', ['category' => urlencode('Horror Fiction')]) }}"
+                                    class="menu-link">
                                     <span class="menu-text">Horror Fiction</span>
-                                </p>
+                                </a>
                             </li>
-                            <li class="menu-item menu-item-active" aria-haspopup="true">
-                                <p class="menu-link">
+                            <li class="menu-item {{ Route::currentRouteNamed('member.dashboard.category') && Route::current()->parameter('category') == 'Romance+Fiction' ? 'menu-item-active' : '' }}"
+                                aria-haspopup="true">
+                                <a href="{{ route('member.dashboard.category', ['category' => urlencode('Romance Fiction')]) }}"
+                                    class="menu-link">
                                     <span class="menu-text">Romance Fiction</span>
-                                </p>
+                                </a>
                             </li>
-                            <li class="menu-item menu-item-active" aria-haspopup="true">
-                                <p class="menu-link">
+                            <li class="menu-item {{ Route::currentRouteNamed('member.dashboard.category') && Route::current()->parameter('category') == 'Action+Fiction' ? 'menu-item-active' : '' }}"
+                                aria-haspopup="true">
+                                <a href="{{ route('member.dashboard.category', ['category' => urlencode('Action Fiction')]) }}"
+                                    class="menu-link">
                                     <span class="menu-text">Action Fiction</span>
-                                </p>
+                                </a>
                             </li>
-                            <li class="menu-item menu-item-active" aria-haspopup="true">
-                                <p class="menu-link">
+                            <li class="menu-item {{ Route::currentRouteNamed('member.dashboard.category') && Route::current()->parameter('category') == 'Fantasy+Fiction' ? 'menu-item-active' : '' }}"
+                                aria-haspopup="true">
+                                <a href="{{ route('member.dashboard.category', ['category' => urlencode('Fantasy Fiction')]) }}"
+                                    class="menu-link">
                                     <span class="menu-text">Fantasy Fiction</span>
-                                </p>
+                                </a>
                             </li>
-                            <li class="menu-item menu-item-active" aria-haspopup="true">
-                                <p class="menu-link">
+                            <li class="menu-item {{ Route::currentRouteNamed('member.dashboard.category') && Route::current()->parameter('category') == 'Crime+Fiction' ? 'menu-item-active' : '' }}"
+                                aria-haspopup="true">
+                                <a href="{{ route('member.dashboard.category', ['category' => urlencode('Crime Fiction')]) }}"
+                                    class="menu-link">
                                     <span class="menu-text">Crime Fiction</span>
-                                </p>
+                                </a>
                             </li>
 
                         </ul>
@@ -96,25 +109,33 @@
                                     <span class="menu-text">Non Fiction</span>
                                 </span>
                             </li>
-                            <li class="menu-item menu-item-active" aria-haspopup="true">
-                                <p class="menu-link">
+                            <li class="menu-item {{ Route::currentRouteNamed('member.dashboard.category') && Route::current()->parameter('category') == 'History' ? 'menu-item-active' : '' }}"
+                                aria-haspopup="true">
+                                <a href="{{ route('member.dashboard.category', ['category' => 'History']) }}"
+                                    class="menu-link">
                                     <span class="menu-text">History</span>
-                                </p>
+                                </a>
                             </li>
-                            <li class="menu-item menu-item-active" aria-haspopup="true">
-                                <p class="menu-link">
+                            <li class="menu-item {{ Route::currentRouteNamed('member.dashboard.category') && Route::current()->parameter('category') == 'Biography' ? 'menu-item-active' : '' }}"
+                                aria-haspopup="true">
+                                <a href="{{ route('member.dashboard.category', ['category' => 'Biography']) }}"
+                                    class="menu-link">
                                     <span class="menu-text">Biography</span>
-                                </p>
+                                </a>
                             </li>
-                            <li class="menu-item menu-item-active" aria-haspopup="true">
-                                <p class="menu-link">
+                            <li class="menu-item {{ Route::currentRouteNamed('member.dashboard.category') && Route::current()->parameter('category') == 'Autobiography' ? 'menu-item-active' : '' }}"
+                                aria-haspopup="true">
+                                <a href="{{ route('member.dashboard.category', ['category' => 'Autobiography']) }}"
+                                    class="menu-link">
                                     <span class="menu-text">Autobiography</span>
-                                </p>
+                                </a>
                             </li>
-                            <li class="menu-item menu-item-active" aria-haspopup="true">
-                                <p class="menu-link">
+                            <li class="menu-item {{ Route::currentRouteNamed('member.dashboard.category') && Route::current()->parameter('category') == 'Cookbook' ? 'menu-item-active' : '' }}"
+                                aria-haspopup="true">
+                                <a href="{{ route('member.dashboard.category', ['category' => 'Cookbook']) }}"
+                                    class="menu-link">
                                     <span class="menu-text">Cookbook</span>
-                                </p>
+                                </a>
                             </li>
                         </ul>
                     </div>

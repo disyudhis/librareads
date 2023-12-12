@@ -15,7 +15,7 @@
                         </a>
                     </li>
                     <li
-                        class="menu-item menu-item-submenu {{ Route::currentRouteNamed('member.books.*') ? 'menu-item-active' : '' }}">
+                        class="menu-item menu-item-submenu {{ Route::currentRouteNamed('member.library.*') ? 'menu-item-active' : '' }}">
                         <a href="{{ route('member.library.index') }}" class="menu-link">
                             <span class="menu-text">My Books</span>
                             <i class="menu-arrow"></i>

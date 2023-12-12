@@ -6,10 +6,12 @@ use App\Http\Livewire\Auth\LoginViewIndex;
 use App\Http\Livewire\Auth\RegisterViewIndex;
 use App\Http\Livewire\Pages\Admin\Books\AdminBooksIndex;
 use App\Http\Livewire\Pages\Admin\Books\AdminBooksManage;
+use App\Http\Livewire\Pages\Admin\Dashboard\AdminDashboardCategory;
 use App\Http\Livewire\Pages\Admin\Dashboard\AdminDashboardIndex;
 use App\Http\Livewire\Pages\Admin\Members\AdminMembersIndex;
 use App\Http\Livewire\Pages\Admin\Members\AdminMembersManage;
 use App\Http\Livewire\Pages\Admin\Statistics\AdminStatisticIndex;
+use App\Http\Livewire\Pages\Member\Dashboard\MemberDashboardCategory;
 use App\Http\Livewire\Pages\Member\Dashboard\MemberDashboardDetail;
 use App\Http\Livewire\Pages\Member\Dashboard\MemberDashboardIndex;
 use App\Http\Livewire\Pages\Member\Library\MemberLibraryIndex;
@@ -51,6 +53,7 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'admin'], function () {
         Route::get('/staff/dashboard', AdminDashboardIndex::class)->name('admin.dashboard.index');
+        Route::get('/staff/books/category/{category}', AdminDashboardCategory::class)->name('admin.dashboard.category');
         Route::get('/staff/books/create', AdminBooksManage::class)->name('admin.books.create');
         Route::get('/staff/books', AdminBooksIndex::class)->name('admin.books.index');
         Route::get('/staff/books/{id}/edit',AdminBooksManage::class)->name('admin.books.edit');
@@ -64,6 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/member/dashboard', MemberDashboardIndex::class)->name('member.dashboard.index');
         Route::get('/member/dashboard/{id}', MemberDashboardDetail::class)->name('member.dashboard.detail');
         Route::get('/member/library', MemberLibraryIndex::class)->name('member.library.index');
+        Route::get('/member/books/{category}', MemberDashboardCategory::class)->name('member.dashboard.category');
     });
 
     Route::group(['middleware' => 'superadmin'], function() {

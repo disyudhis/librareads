@@ -23,7 +23,8 @@ class BookService extends AppService implements AppServiceInterface
         return BookTable::find($id);
     }
 
-    public function searchBookByTitle($search)  {
+    public function searchBookByTitle($search)
+    {
         return BookTable::where('title', 'LIKE', '%' . $search . '%')->paginate(12);
     }
 
@@ -53,5 +54,11 @@ class BookService extends AppService implements AppServiceInterface
         $row = BookTable::find($id);
         $row->delete();
         return $row;
+    }
+
+    public function getBookByCategory($category)
+    {
+        $category = str_replace('+', ' ', $category);
+        return BookTable::where('category', $category)->get();
     }
 }
