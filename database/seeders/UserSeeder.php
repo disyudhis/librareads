@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     {
         User::firstOrCreate(
             [
-                'id' => '1',
+                'id' => '00000001-0000-0000-0000-000000000001',
                 'email' => 'staff@gmail.com',
             ],
             [
@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
 
         User::firstOrCreate(
             [
-                'id' => '2',
+                'id' => '00000001-0000-0000-0000-000000000002',
                 'email' => 'member@gmail.com',
             ],
             [
@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
         );
         User::firstOrCreate(
             [
-                'id' => '3',
+                'id' => '00000001-0000-0000-0000-000000000003',
                 'email' => 'superadmin@gmail.com',
             ],
             [

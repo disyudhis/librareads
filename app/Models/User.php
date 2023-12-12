@@ -8,12 +8,13 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\Table\LibraryTable;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends AppAuthenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     const ROLE_ADMIN = 'ADMIN';
     const ROLE_MEMBER = 'MEMBER';
@@ -24,6 +25,9 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = 'users';
+    protected $guard_name = 'web';
+    protected $keyType = 'string';
     protected $fillable = ['name', 'email', 'password', 'identity_number', 'photo', 'role'];
 
     /**
