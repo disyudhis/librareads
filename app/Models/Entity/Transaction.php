@@ -23,7 +23,11 @@ class Transaction extends AppModel
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'user_id',
+        'admin_id',
+        'code',
+        'loan_id',
+        'loan_date',
     ];
 
     /**

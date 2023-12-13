@@ -27,23 +27,19 @@ class TransactionService extends AppService implements AppServiceInterface
 
     public function create($data)
     {
-        return TransactionTable::create([
-            'name' => $data['name'],
-        ]);
+        return TransactionTable::create($data);
     }
 
     public function update($id, $data)
     {
-        $row = TransactionTable::findOrFail($id);
-        $row->update([
-            'name' => $data['name'],
-        ]);
+        $row = TransactionTable::find($id);
+        $row->update($data);
         return $row;
     }
 
     public function delete($id)
     {
-        $row = TransactionTable::findOrFail($id);
+        $row = TransactionTable::find($id);
         $row->delete();
         return $row;
     }

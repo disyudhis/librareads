@@ -8,12 +8,10 @@ use App\Services\AppServiceInterface;
 
 class LoanService extends AppService implements AppServiceInterface
 {
-
     public function __construct(LoanTable $model)
     {
         parent::__construct($model);
     }
-
 
     public function dataTable($filter)
     {
@@ -25,7 +23,8 @@ class LoanService extends AppService implements AppServiceInterface
         return LoanTable::find($id);
     }
 
-    public function getStatusLoan($id) {
+    public function getStatusLoan($id)
+    {
         return LoanTable::where('book_id', $id)->get();
     }
 
@@ -37,9 +36,7 @@ class LoanService extends AppService implements AppServiceInterface
     public function update($id, $data)
     {
         $row = LoanTable::findOrFail($id);
-        $row->update([
-            'name' => $data['name'],
-        ]);
+        $row->update($data);
         return $row;
     }
 
@@ -48,5 +45,10 @@ class LoanService extends AppService implements AppServiceInterface
         $row = LoanTable::findOrFail($id);
         $row->delete();
         return $row;
+    }
+
+    public function getLoanByCode($code)
+    {
+        return LoanTable::where('code', $code)->first();
     }
 }

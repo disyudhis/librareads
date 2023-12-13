@@ -16,6 +16,6 @@ class ComponentSearchBar extends Component
 
     public function getBook()
     {
-        $this->emitUp('searchBook', $this->search);
+        $this->emit('searchBook', $this->search);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Table\LoanTable;
+use App\Models\Table\TransactionTable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Table\LibraryTable;
 use Illuminate\Support\Facades\Storage;
@@ -47,15 +48,16 @@ class User extends AppAuthenticatable
         'password' => 'hashed',
     ];
 
-    public function libraries()
+    public function transactions()
     {
-        $this->hasMany(LibraryTable::class, 'user_id');
+        $this->hasMany(TransactionTable::class, 'user_id');
     }
 
     public function loans()
     {
         $this->hasMany(LoanTable::class, 'user_id');
     }
+
     public function getPhotoUrlAttribute()
     {
         if (!blank($this->photo)) {

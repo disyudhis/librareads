@@ -2,17 +2,18 @@
 
 namespace App\Models\Table;
 
+use App\Models\User;
 use App\Models\Entity\Transaction;
 
 class TransactionTable extends Transaction
 {
-    public function libraries()
+    public function loan()
     {
-        return $this->hasMany(LibraryTable::class, 'transaction_id');
+        return $this->belongsTo(LoanTable::class);
     }
 
-    public function book()
+    public function user()
     {
-        return $this->belongsTo(BookTable::class);
+        return $this->belongsTo(User::class);
     }
 }

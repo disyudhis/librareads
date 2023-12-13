@@ -27,7 +27,7 @@ class Loan extends AppModel
         'stock_id',
         'loan_date',
         'expected_return',
-        'returning_id',
+        'code'
     ];
 
     /**

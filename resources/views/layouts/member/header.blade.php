@@ -34,7 +34,7 @@
                 <!--begin::Toggle-->
                 <div class="topbar-item">
                     @if (Auth::user()->role == 'MEMBER')
-                        {{-- @livewire('components.layout.component-search-bar') --}}
+                       @livewire('components.layout.component-search-bar')
                     @endif
                 </div>
                 <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">

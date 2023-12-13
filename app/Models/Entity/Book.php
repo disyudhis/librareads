@@ -50,4 +50,12 @@ class Book extends AppModel
     protected $dates = [
         //
     ];
+
+    public function getImageUrlAttribute()  {
+        if($this->image){
+            return $this->image;
+        } else {
+            return 'https://ui-avatars.com/api/?name='.urlencode($this->title).'&color=fff&background=990000&length=3&font-size=0.33';
+        }
+    }
 }

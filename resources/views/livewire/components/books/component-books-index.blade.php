@@ -1,35 +1,28 @@
 <div>
     <div class="container">
         <div class="card card-custom card-fit">
-            <div class="card-header">
-                <div class="card-title"></div>
-                <div class="card-toolbar">
-                    <div class="form-group my-3 mx-10">
-                        <div class="input-icon">
-                            <input type="search" wire:model='search'
-                                class="text-center font-size-h6 form-control form-control-lg rounded-pill"
-                                placeholder="Find Your Book">
-                            <span><i class="flaticon2-search-1 icon-md"></i></span>
-                        </div>
-                    </div>
-                    @if (auth()->user()->role == 'ADMIN')
+            @if (auth()->user()->role == 'ADMIN')
+                <div class="card-header">
+                    <div class="card-title"></div>
+                    <div class="card-toolbar">
+                        @livewire('components.layout.component-search-bar')
                         <a href="{{ route('admin.books.create') }}"
                             class="btn btn-lg btn-pink font-size-h6 font-weight-bold"><i
                                 class="flaticon2-plus text-white"></i>Add Book</a>
-                    @endif
+                    </div>
                 </div>
-            </div>
+            @endif
             <div class="card-body">
                 @if ($search)
                     <h5 class="font-weight-boldest text-center">Showing Result for "{{ $search }}"</h5>
                 @endif
                 <div class="row my-4">
                     @forelse ($books as $book)
-                        <div class="col-md-3" wire:key="book-{{ $book->id }}">
+                        <div class="col-md-3">
                             <a
                                 href="{{ auth()->user()->role == 'ADMIN' ? route('admin.books.edit', ['id' => $book->id]) : route('member.dashboard.detail', ['id' => $book->id]) }}">
-                                <img src="{{ asset('storage/' . $book->image) }}" style="max-height: 100%; height: 80%"
-                                    alt="">
+                                <img src="{{ $book->image ? asset('storage/' . $book->image) : asset('assets/media/users/blank.png') }}"
+                                    style="max-height: 100%; height: 80%; max-width: 100%" alt="">
                             </a>
                         </div>
                     @empty

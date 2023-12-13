@@ -17,4 +17,9 @@ class LoanTable extends Loan
     {
         return $this->belongsTo(StockTable::class);
     }
+
+    public function transactions()
+    {
+        return $this->hasMany(TransactionTable::class, 'loan_id');
+    }
 }

@@ -50,6 +50,7 @@ class ComponentDashboardDetail extends Component
             'user_id' => Auth::user()->id,
             'loan_date' => $this->loan_date,
             'expected_return' => $this->return_date,
+            'code' => $stock->code
         ];
         $loan = $loan_service->create($data);
         $this->loan_id = $loan->id;

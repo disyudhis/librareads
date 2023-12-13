@@ -14,7 +14,7 @@ class ComponentBooksIndex extends Component
     public $search;
     protected $paginationTheme = 'bootstrap';
 
-    protected $listener = [
+    protected $listeners = [
         'searchBook' => 'searchBook',
     ];
 
@@ -25,10 +25,14 @@ class ComponentBooksIndex extends Component
                 'entries' => 12,
                 'sort_type' => 'DESC',
                 'search_columns' => 'title',
-                'search_key' => $this->search
+                'search_key' => $this->search,
             ]),
         );
         return view('livewire.components.books.component-books-index', compact('books'));
     }
 
+    public function searchBook($search)
+    {
+        $this->search = $search;
+    }
 }

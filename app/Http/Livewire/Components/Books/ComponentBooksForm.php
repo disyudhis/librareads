@@ -42,6 +42,7 @@ class ComponentBooksForm extends Component
             $this->isbn     = $this->book->isbn;
             $this->stock    = $this->book->quantity;
             $this->synopsis = $this->book->synopsis;
+            $this->category = $this->book->category;
         }
     }
 
