@@ -27,9 +27,7 @@ class ReturningService extends AppService implements AppServiceInterface
 
     public function create($data)
     {
-        return ReturningTable::create([
-            'name' => $data['name'],
-        ]);
+        return ReturningTable::create($data);
     }
 
     public function update($id, $data)

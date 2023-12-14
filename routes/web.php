@@ -14,6 +14,7 @@ use App\Http\Livewire\Pages\Admin\Statistics\AdminStatisticIndex;
 use App\Http\Livewire\Pages\Member\Dashboard\MemberDashboardCategory;
 use App\Http\Livewire\Pages\Member\Dashboard\MemberDashboardDetail;
 use App\Http\Livewire\Pages\Member\Dashboard\MemberDashboardIndex;
+use App\Http\Livewire\Pages\Member\Library\MemberLibraryDetail;
 use App\Http\Livewire\Pages\Member\Library\MemberLibraryIndex;
 use App\Http\Livewire\Pages\Superadmin\Dashboard\SuperDashboardCreate;
 use App\Http\Livewire\Pages\Superadmin\Dashboard\SuperDashboardDetail;
@@ -68,6 +69,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/member/dashboard/{id}', MemberDashboardDetail::class)->name('member.dashboard.detail');
         Route::get('/member/library', MemberLibraryIndex::class)->name('member.library.index');
         Route::get('/member/books/{category}', MemberDashboardCategory::class)->name('member.dashboard.category');
+        Route::get('/member/library/{id}', MemberLibraryDetail::class)->name('member.library.detail');
     });
 
     Route::group(['middleware' => 'superadmin'], function() {

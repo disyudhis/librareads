@@ -18,7 +18,7 @@
                 <div class="row my-4">
                     @forelse ($loans as $loan)
                         <div class="col-md-3">
-                            <a href="javascript:;">
+                            <a href="{{ route('member.library.detail', ['id' => $loan->id]) }}">
                                 <img src="{{ asset('storage/' . $loan->stock->book->image) }}"
                                     style="max-height: 100%; height: 80%; max-width: 100%" alt="">
                             </a>

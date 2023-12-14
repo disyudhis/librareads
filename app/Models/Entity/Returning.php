@@ -23,7 +23,11 @@ class Returning extends AppModel
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'return_date',
+        'condition',
+        'fine',
+        'code',
+        'loan_id',
     ];
 
     /**

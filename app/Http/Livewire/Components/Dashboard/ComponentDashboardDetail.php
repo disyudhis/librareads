@@ -8,16 +8,18 @@ use Livewire\Component;
 use App\Services\Book\BookService;
 use App\Services\Loan\LoanService;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class ComponentDashboardDetail extends Component
 {
     use LivewireAlert;
+
     public $book_id;
     public $book, $loan_date, $code, $return_date, $count, $title, $loan, $writer, $warning;
     public $loan_id;
 
     protected $rules = [
-        'loan_date' => 'required',
+        'loan_date' => 'required|after_or_equal:today',
         'return_date' => 'required',
     ];
 
@@ -26,8 +28,10 @@ class ComponentDashboardDetail extends Component
         $this->book_id = $id;
         $this->book = $book_service->getById($id);
         $this->count = $stock_service->getAvailableStockCountByBookId($this->book_id);
-        if($this->count <= 2){
+        if ($this->count == 2 || $this->count == 1) {
             $this->warning = 'Stock is limited!!';
+        } elseif ($this->count == 0) {
+            $this->warning = 'Stock is not available';
         }
     }
     public function render()
@@ -50,7 +54,7 @@ class ComponentDashboardDetail extends Component
             'user_id' => Auth::user()->id,
             'loan_date' => $this->loan_date,
             'expected_return' => $this->return_date,
-            'code' => $stock->code
+            'code' => $stock->code,
         ];
         $loan = $loan_service->create($data);
         $this->loan_id = $loan->id;
@@ -78,7 +82,6 @@ class ComponentDashboardDetail extends Component
     public function openSuccessModal()
     {
         $this->dispatchBrowserEvent('openSuccessModal');
-
     }
 
     public function closeSuccessModal()

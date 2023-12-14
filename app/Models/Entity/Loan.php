@@ -10,6 +10,12 @@ class Loan extends AppModel
 {
     use HasFactory, SoftDeletes;
 
+    const STATUS_ONPERIOD = 'ON PERIOD';
+    const STATUS_DUE = 'DUE';
+    const STATUS_RETURNED = 'RETURNED';
+
+    const STATUS = ['ON PERIOD', 'DUE'];
+
     /**
      * The table associated with the model.
      *
@@ -22,13 +28,7 @@ class Loan extends AppModel
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'user_id',
-        'stock_id',
-        'loan_date',
-        'expected_return',
-        'code'
-    ];
+    protected $fillable = ['user_id', 'stock_id', 'loan_date', 'expected_return', 'code', 'status', 'returning_id'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -47,4 +47,13 @@ class Loan extends AppModel
     protected $dates = [
         //
     ];
+
+    public function getStatusColorAttribute()
+    {
+        if ($this->status == self::STATUS_ONPERIOD) {
+            return 'light-warning';
+        } elseif ($this->status == self::STATUS_DUE) {
+            return 'light-danger';
+        }
+    }
 }

@@ -35,7 +35,7 @@ class LoanService extends AppService implements AppServiceInterface
 
     public function update($id, $data)
     {
-        $row = LoanTable::findOrFail($id);
+        $row = LoanTable::find($id);
         $row->update($data);
         return $row;
     }
@@ -50,5 +50,10 @@ class LoanService extends AppService implements AppServiceInterface
     public function getLoanByCode($code)
     {
         return LoanTable::where('code', $code)->first();
+    }
+
+    public function getStockId($id)  {
+        $loan = $this->getById($id);
+        return $loan->stock_id;
     }
 }

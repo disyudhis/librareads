@@ -38,7 +38,8 @@
                             <img src="{{ asset('storage/' . $book->image) }}" height="80%" alt="">
                         </div>
                         <div class="col">
-                            <h4>{{ $book->title }} <br><span class="text-muted">Qty: {{ $count }} <br><span class="text-danger font-size-sm">{{ $warning }}</span></span></h4>
+                            <h4>{{ $book->title }} <br><span class="text-muted">Qty: {{ $count }} <br><span
+                                        class="text-danger font-size-sm">{{ $warning }}</span></span></h4>
                             <div class="mt-10">
                                 <h4>Loan Date</h4>
                                 <div class="form-group">
@@ -58,8 +59,8 @@
                                     @enderror
                                 </div>
                                 <div class="d-flex justify-content-center align-items-center mt-10">
-                                    <button class="btn btn-pink btn-lg btn-pill font-size-h6 px-40"
-                                        wire:click="loanBook">Loan</button>
+                                    <button class="btn {{ $count == 0 ? 'btn-secondary' : 'btn-pink' }} btn-lg btn-pill font-size-h6 px-40"
+                                        {{ $count == 0 ? 'disabled' : '' }} wire:click="loanBook">Loan</button>
                                 </div>
                             </div>
                         </div>

@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('returnings', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('code')->nullable()->unique();
+            $table->foreignUuid('loan_id')->nullable()->references('id')->on('loans');
             $table->date('return_date')->nullable();
             $table->string('condition')->nullable();
             $table->string('fine')->nullable();

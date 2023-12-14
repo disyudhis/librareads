@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignUuid('stock_id')->nullable()->references('id')->on('stocks');
             $table->date('loan_date')->nullable();
             $table->string('code')->nullable();
+            $table->string('status')->nullable()->default('ON PERIOD');
             $table->date('expected_return')->nullable();
             $table->softDeletes();
             $table->timestamps();

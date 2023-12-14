@@ -2,6 +2,7 @@
 
 namespace App\Services\Stock;
 
+use App\Models\Table\BookTable;
 use Illuminate\Support\Str;
 use App\Models\Entity\Stock;
 use App\Services\AppService;
@@ -81,5 +82,18 @@ class StockService extends AppService implements AppServiceInterface
         return StockTable::where('book_id', $book_id)
             ->where('status', Stock::STATUS_AVAILABLE)
             ->count();
+    }
+
+    public function getBookId($id)
+    {
+        $stock = $this->getById($id);
+        return $stock->book_id;
+    }
+
+    public function returnBook($id)
+    {
+        return StockTable::where('id', $id)->update([
+            'status' => StockTable::STATUS_AVAILABLE,
+        ]);
     }
 }
