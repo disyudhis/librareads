@@ -35,17 +35,21 @@ class ComponentStatisticIndex extends Component
     {
         $this->validate();
         $loan = $loan_service->getLoanByCode($this->code);
-        $data = [
-            'code' => $this->code,
-            'user_id' => $loan->user_id,
-            'loan_id' => $loan->id,
-            'loan_date' => $loan->loan_date,
-            'admin_id' => Auth::user()->id,
-        ];
-        $transaction_service->create($data);
-        if ($loan) {
+        try {
+            if ($transaction_service->getLoanId($loan->id)) {
+                $this->alert('error', 'Data sudah ada pada tabel');
+                return;
+            }
+            $data = [
+                'code' => $this->code,
+                'user_id' => $loan->user_id,
+                'loan_id' => $loan->id,
+                'loan_date' => $loan->loan_date,
+                'admin_id' => Auth::user()->id,
+            ];
+            $transaction_service->create($data);
             $this->flash('success', 'Data added successfully', [], route('admin.statistic.index'));
-        } else {
+        } catch (\Exception $e) {
             $this->alert('error', 'There is no book with the code');
         }
     }

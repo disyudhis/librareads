@@ -8,12 +8,10 @@ use App\Services\AppServiceInterface;
 
 class TransactionService extends AppService implements AppServiceInterface
 {
-
     public function __construct(TransactionTable $model)
     {
         parent::__construct($model);
     }
-
 
     public function dataTable($filter)
     {
@@ -42,5 +40,10 @@ class TransactionService extends AppService implements AppServiceInterface
         $row = TransactionTable::find($id);
         $row->delete();
         return $row;
+    }
+
+    public function getLoanId($id)
+    {
+        return TransactionTable::where('loan_id', $id)->first();
     }
 }

@@ -14,7 +14,7 @@
                             <h3>{{ $loan->stock->book->title }} <br>
                                 <span class="text-muted font-size-lg">{{ $loan->stock->book->writer }}</span>
                             </h3>
-                            <p class="text-muted font-weight-light">Code: {{ $loan->stock->code }}f</p>
+                            <p class="text-muted font-weight-light">Code: {{ $loan->stock->code }}</p>
                         </div>
                         <div>
                             <span

@@ -49,10 +49,13 @@ class LoanService extends AppService implements AppServiceInterface
 
     public function getLoanByCode($code)
     {
-        return LoanTable::where('code', $code)->first();
+        return LoanTable::where('code', $code)
+            ->whereIn('status', LoanTable::STATUS)
+            ->first();
     }
 
-    public function getStockId($id)  {
+    public function getStockId($id)
+    {
         $loan = $this->getById($id);
         return $loan->stock_id;
     }
