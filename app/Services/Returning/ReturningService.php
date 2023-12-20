@@ -8,12 +8,10 @@ use App\Services\AppServiceInterface;
 
 class ReturningService extends AppService implements AppServiceInterface
 {
-
     public function __construct(ReturningTable $model)
     {
         parent::__construct($model);
     }
-
 
     public function dataTable($filter)
     {
@@ -22,7 +20,7 @@ class ReturningService extends AppService implements AppServiceInterface
 
     public function getById($id)
     {
-        return ReturningTable::findOrFail($id);
+        return ReturningTable::find($id);
     }
 
     public function create($data)
@@ -32,10 +30,8 @@ class ReturningService extends AppService implements AppServiceInterface
 
     public function update($id, $data)
     {
-        $row = ReturningTable::findOrFail($id);
-        $row->update([
-            'name' => $data['name'],
-        ]);
+        $row = ReturningTable::find($id);
+        $row->update($data);
         return $row;
     }
 
@@ -44,5 +40,25 @@ class ReturningService extends AppService implements AppServiceInterface
         $row = ReturningTable::findOrFail($id);
         $row->delete();
         return $row;
+    }
+
+    public function getReturnByCode($code)
+    {
+        return ReturningTable::where('code', $code)->first();
+    }
+
+    public function getLoanId($id)
+    {
+        return ReturningTable::where('loan_id', $id)->first();
+    }
+
+    public function getReturnCodeByLoanId($id)
+    {
+        $loan_id = $this->getLoanId($id);
+        if ($loan_id) {
+            return $loan_id->code;
+        } else {
+            return null;
+        }
     }
 }

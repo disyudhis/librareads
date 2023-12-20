@@ -46,4 +46,9 @@ class TransactionService extends AppService implements AppServiceInterface
     {
         return TransactionTable::where('loan_id', $id)->first();
     }
+
+    public function getReturnId($id)  {
+        return TransactionTable::where('returning_id', $id)->first();
+    }
+
 }

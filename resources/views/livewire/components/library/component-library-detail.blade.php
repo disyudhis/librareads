@@ -14,7 +14,11 @@
                             <h3>{{ $loan->stock->book->title }} <br>
                                 <span class="text-muted font-size-lg">{{ $loan->stock->book->writer }}</span>
                             </h3>
-                            <p class="text-muted font-weight-light">Code: {{ $loan->stock->code }}</p>
+                            <p class="text-muted font-weight-light">Loan Code: {{ $loan->stock->code }}</p>
+                            @if ($return_code)
+                                <p class="font-weight-light font-weight-bold">Give this code to admin for returning book
+                                    <br><span class="text-danger">Return Code: {{ $return_code }}</span></p>
+                            @endif
                         </div>
                         <div>
                             <span
@@ -41,10 +45,12 @@
                             </h5>
                         </div>
                     </div>
-                    <div class="form-group d-flex justify-content-end align-items-end my-7">
-                        <button wire:click='openReturnModal' data-target="#returnModal"
-                            class="btn btn-pink btn-lg btn-pill font-weight-bold font-size-h6">Return</button>
-                    </div>
+                    @if ($loan->status != \App\Models\Entity\Loan::STATUS_RETURNED)
+                        <div class="form-group d-flex justify-content-end align-items-end my-7">
+                            <button wire:click='openReturnModal' data-target="#returnModal"
+                                class="btn btn-pink btn-lg btn-pill font-weight-bold font-size-h6">Return</button>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

@@ -26,6 +26,7 @@ return new class extends Migration {
                 ->references('id')
                 ->on('loans');
             $table->string('loan_date')->nullable();
+            $table->date('expected_return')->nullable();
             $table
                 ->foreignUuid('admin_id')
                 ->nullable()
@@ -36,6 +37,10 @@ return new class extends Migration {
                 ->nullable()
                 ->references('id')
                 ->on('returnings');
+            $table->string('returning_code')->nullable();
+            $table->date('returning_date')->nullable();
+            $table->string('condition')->nullable();
+            $table->string('fine')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

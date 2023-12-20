@@ -28,6 +28,13 @@ class Transaction extends AppModel
         'code',
         'loan_id',
         'loan_date',
+        'expected_return',
+        'admin_id',
+        'returning_id',
+        'returning_code',
+        'returning_date',
+        'condition',
+        'fine'
     ];
 
     /**

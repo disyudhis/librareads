@@ -54,6 +54,8 @@ class Loan extends AppModel
             return 'light-warning';
         } elseif ($this->status == self::STATUS_DUE) {
             return 'light-danger';
+        } elseif ($this->status == self::STATUS_RETURNED) {
+            return 'secondary';
         }
     }
 }
