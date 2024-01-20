@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Components\Members;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use App\Services\Member\MemberService;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -17,6 +18,7 @@ class ComponentMembersForm extends Component
     public $name, $email, $photo, $nisn, $password;
     public $member_id;
     public $existingFile = false;
+    public $role_permission_id;
 
     protected function rules()
     {
@@ -39,6 +41,7 @@ class ComponentMembersForm extends Component
             $this->name = $this->member->name;
             $this->nisn = $this->member->identity_number;
             $this->email = $this->member->email;
+            $this->role_permission_id = $this->member->role_permission_id;
         }
     }
 
@@ -56,10 +59,12 @@ class ComponentMembersForm extends Component
             $photo = null;
         }
         if (Auth::user()->role == User::ROLE_ADMIN) {
-            $role = 'MEMBER';
+            $type = 'MEMBER';
         } else {
-            $role = 'ADMIN';
+            $type = 'ADMIN';
         }
+        $role = Role::where('id', $this->role_permission_id)->first();
+        $this->role_permission_name = $role->name;
         $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
         $data = [
             'name' => $this->name,
@@ -67,9 +72,11 @@ class ComponentMembersForm extends Component
             'photo' => $photo,
             'identity_number' => $this->nisn,
             'password' => $hashedPassword,
-            'role' => $role,
+            'role' => $type,
+            'role_permission_id' => $this->role_permission_id,
         ];
-        $member_service->create($data);
+        $member = $member_service->create($data);
+        $member->syncRoles($this->role_permission_name);
         if (Auth::user()->role == User::ROLE_ADMIN) {
             $this->flash('success', 'Member successfully added!', [], route('admin.members.index'));
         } elseif (Auth::user()->role == User::ROLE_SUPERADMIN) {
@@ -103,11 +110,14 @@ class ComponentMembersForm extends Component
                 'password' => 'required',
             ]);
         }
+        $roles = Role::where('id', $this->role_permission_id)->first();
+        $this->role_permission_name = $roles->name;
         $data = [
             'name' => $this->name,
             'email' => $this->email,
             'identity_number' => $this->nisn,
             'role' => $role,
+            'role_permission_id' => $this->role_permission_id,
         ];
         if (!empty($this->password)) {
             $data['password'] = $hashedPassword;
@@ -116,7 +126,8 @@ class ComponentMembersForm extends Component
             $photo = $this->photo->store('photos', 'public');
             $data['photo'] = $photo;
         }
-        $member_service->update($this->member_id, $data);
+        $member = $member_service->update($this->member_id, $data);
+        $member->syncRoles($this->role_permission_name);
         if (auth()->user()->role == User::ROLE_ADMIN) {
             $this->flash('success', 'Member have been added', [], route('admin.members.index'));
         } else {

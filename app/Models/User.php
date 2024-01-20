@@ -12,10 +12,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasPermissions;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends AppAuthenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, HasRoles, HasPermissions;
 
     const ROLE_ADMIN = 'ADMIN';
     const ROLE_MEMBER = 'MEMBER';
@@ -29,7 +31,7 @@ class User extends AppAuthenticatable
     protected $table = 'users';
     protected $guard_name = 'web';
     protected $keyType = 'string';
-    protected $fillable = ['name', 'email', 'password', 'identity_number', 'photo', 'role'];
+    protected $fillable = ['name', 'email', 'password', 'identity_number', 'photo', 'role', 'role_permission_id'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -56,13 +58,5 @@ class User extends AppAuthenticatable
     public function loans()
     {
         $this->hasMany(LoanTable::class, 'user_id');
-    }
-
-    public function getPhotoUrlAttribute()
-    {
-        if (!blank($this->photo)) {
-            return Storage::temporaryUrl($this->photo, new \DateTime('+1 days'));
-        }
-        return null;
     }
 }

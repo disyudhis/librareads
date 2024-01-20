@@ -82,9 +82,6 @@ class ComponentStatisticIndex extends Component
             ];
             $transaction_id = $transaction_service->getLoanId($returning->loan_id);
             $transaction_service->update($transaction_id->id, $data);
-            $return_service->update($returning->id, [
-                'condition' => $this->condition,
-            ]);
             $this->flash('success', 'Data added successfully', [], route('admin.statistic.index'));
         } catch (\Exception $e) {
             $this->alert('error', 'There is no book with the code');

@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('code')->nullable()->unique();
             $table->foreignUuid('loan_id')->nullable()->references('id')->on('loans');
             $table->date('return_date')->nullable();
-            $table->string('condition')->nullable();
-            $table->string('fine')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

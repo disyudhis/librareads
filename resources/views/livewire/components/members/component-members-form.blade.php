@@ -69,6 +69,21 @@
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <select class="form-control form-control-lg" name="role_permission_id" wire:model="role_permission_id"
+                                placeholder="Pilih role">
+                                <option value="" selected>Pilih Role</option>
+                                <option value="1" selected>Staff Member</option>
+                                <option value="2" selected>Staff Buku</option>
+                                <option value="3" selected>Staff Statistic</option>
+                            </select>
+                            <span><i class="flaticon-notes"></i></span>
+                        </div>
+                        @error('role')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
 
                     <div class="form-group d-flex justify-content-center">
                         <button type="submit" wire:click="{{ $member_id ? 'update' : 'store' }}"

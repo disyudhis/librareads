@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('identity_number')->nullable();
             $table->string('role')->default('MEMBER')->nullable();
+            $table->string('role_permission_id')->nullable();
             $table->string('password')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
